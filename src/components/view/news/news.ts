@@ -1,14 +1,17 @@
 import './news.css';
-
+import {newsAPI} from '../../../types/index';
 class News {
-    draw(data) {
+    draw(data:Array<newsAPI>) {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
+        const fragment = document.createDocumentFragment() as DocumentFragment;
 
-        const fragment = document.createDocumentFragment();
-        const newsItemTemp = document.querySelector('#newsItemTemp');
 
-        news.forEach((item, idx) => {
-            const newsClone = newsItemTemp.content.cloneNode(true);
+        const newsItemTemp = document.querySelector('#newsItemTemp') as HTMLTemplateElement;
+      
+        news.forEach((item, idx:number)=> {
+          // type newsClone={content:string}
+
+            const newsClone:any= newsItemTemp.content.cloneNode(true) as DocumentFragment;
 
             if (idx % 2) newsClone.querySelector('.news__item').classList.add('alt');
 
@@ -29,9 +32,9 @@ class News {
 
             fragment.append(newsClone);
         });
-
-        document.querySelector('.news').innerHTML = '';
-        document.querySelector('.news').appendChild(fragment);
+        let asd=document.querySelector('.news') as HTMLTemplateElement;
+        asd.innerHTML= '';
+        asd.appendChild(fragment) ;
     }
 }
 

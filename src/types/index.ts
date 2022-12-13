@@ -1,9 +1,14 @@
-export interface NewsAPI {
-  id:string;
-  name:string;
-  description:string;
-  url:string;
-  category:string;
-  language:string;
-  contry:string;
-} 
+interface newsAPI {
+  title:string,
+  url:string,
+  source:{
+    name:string,
+    id:string
+  }
+  author:string,
+  description:string,
+  urlToImage:string,
+  publishedAt:string
+} ;
+
+export {newsAPI}
